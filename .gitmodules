@@ -1,0 +1,3 @@
+[submodule "ambi-tv"]
+	path = ambi-tv
+	url = git@github.com:fluxa/ambi-tv.git

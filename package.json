@@ -1,0 +1,32 @@
+{
+  "name": "ambi-tv-remote",
+  "description": "ambi-tv web remote",
+  "version": "0.0.1",
+  "author": {
+    "name": "fluxa.io",
+    "email": "jmfluxa@gmail.com"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.3.x"
+  },
+  "scripts": {
+    "start": "NODE_PATH=./app/controllers PORT=5000 ./node_modules/.bin/nodemon server.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "body-parser":"latest",
+    "static-favicon":"latest",
+    "express-namespace": "latest",
+    "view-helpers": "latest",
+    "jade": "latest",
+    "underscore": "latest",
+    "moment": "latest",
+    "less-middleware": "latest",
+    "async": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  },
+  "keywords": []
+}
