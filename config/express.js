@@ -53,8 +53,5 @@ module.exports = function (app, config) {
 		next()
 	})
 
-	// View helpers
-	app.use(helpers(pkg.name))
-
 
 }

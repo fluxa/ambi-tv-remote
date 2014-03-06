@@ -17,8 +17,6 @@
     "express": "latest",
     "body-parser":"latest",
     "static-favicon":"latest",
-    "express-namespace": "latest",
-    "view-helpers": "latest",
     "jade": "latest",
     "underscore": "latest",
     "moment": "latest",
