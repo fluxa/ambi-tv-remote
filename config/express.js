@@ -37,7 +37,7 @@ module.exports = function (app, config) {
 			dest: path.join(config.root,'/public'),
 			prefix: '/stylesheets',
 			compress : true,
-			debug: true,
+			debug: false,
 			force: true
 		}
 	));

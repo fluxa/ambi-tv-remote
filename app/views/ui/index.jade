@@ -14,7 +14,7 @@ html
 				'remote/'+cmd, 
 				args || {}, 
 				function(result){
-					alert(result);
+					
 				}
 			);
 		}
@@ -22,3 +22,12 @@ html
 		function launch() {
 			send_cmd('launch');
 		}
+
+		function pause() {
+			send_cmd('pause');
+		}
+
+		function kill() {
+			send_cmd('kill');
+		}
+
