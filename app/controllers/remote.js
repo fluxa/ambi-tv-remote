@@ -34,16 +34,25 @@ exports.command = function (req, res, next) {
 				console.log(common.util.format('ambi-tv exited with code %s',code));
 				ambitv_process = null;
 			});
+
+			ambitv_process.on('error', function(err) {
+				console.log(common.util.format('ambi-tv error: %s',JSON.stringify(err)));
+				ambitv_process = null;
+			});
+
+			console.log(common.util.format('spawned ambi-tv process with pid %s',ambitv_process.pid));
 			
 		}
 		break;
 		case 'pause':
 		if(ambitv_process) {
-			ambitv_process.stdout.write('t\n');
+			ambitv_process.stdin.write('t');
 		}
 		break;
 		case 'kill':
-		ambitv_process.kill('SIGHUP');
+		if(ambitv_process) {
+			ambitv_process.kill();
+		}
 		break;
 	}
 
