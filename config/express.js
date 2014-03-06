@@ -6,7 +6,6 @@
 var express = require('express')
 var bodyParser = require('body-parser');
 var favicon = require('static-favicon');
-var helpers = require('view-helpers');
 var lessMiddleware = require('less-middleware');
 var pkg = require('../package');
 var path = require('path');
