@@ -6,9 +6,10 @@
 var express = require('express')
 var bodyParser = require('body-parser');
 var favicon = require('static-favicon');
-var helpers = require('view-helpers')
-var lessMiddleware = require('less-middleware')
-var pkg = require('../package')
+var helpers = require('view-helpers');
+var lessMiddleware = require('less-middleware');
+var pkg = require('../package');
+var path = require('path');
 
 /*!
  * Expose
@@ -30,14 +31,16 @@ module.exports = function (app, config) {
 
 
 	// less
-	app.use(lessMiddleware({
-		dest: __dirname + '/../public',
-		src: __dirname + '/../app/src/less',
-		prefix: '/stylesheets',
-		compress : true,
-		debug: false,
-		force: true
-	}));
+	app.use(lessMiddleware(
+		path.join(config.root,'/app/src/less'),
+		{
+			dest: path.join(config.root,'/public'),
+			prefix: '/stylesheets',
+			compress : true,
+			debug: true,
+			force: true
+		}
+	));
 
 
 	//static should be after less-middleware

@@ -1,16 +1,15 @@
-
+	
 /*!
  * Module dependencies.
  */
 
-var async = require('async')
-var _ = require('underscore')
-var util = require('util')
+var common = require('../util/common');
+var remote = require('./remote');
 
- 
 exports.index = function (req, res, next) {
 
-	res.send({});
+	res.render('../views/ui/index', {});
+	
 }
 
 

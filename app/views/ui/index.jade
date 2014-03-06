@@ -3,6 +3,22 @@ html
 	include ../includes/head
 	body
 		.container
-			h1 ambi-tv remote
-	include ../includes/tail
+			button.btn.btn-lg.btn-primary(onclick='launch()') Launch
+			button.btn.btn-lg.btn-primary(onclick='pause()') Toggle Pause
+			button.btn.btn-lg.btn-danger(onclick='kill()') Kill
 	include ../includes/scripts_common
+	script.
+
+		function send_cmd(cmd, args) {
+			$.post(
+				'remote/'+cmd, 
+				args || {}, 
+				function(result){
+					alert(result);
+				}
+			);
+		}
+
+		function launch() {
+			send_cmd('launch');
+		}
