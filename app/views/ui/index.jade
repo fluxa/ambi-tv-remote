@@ -3,9 +3,14 @@ html
 	include ../includes/head
 	body
 		.container
-			button.btn.btn-lg.btn-primary(onclick='launch()') Launch
-			button.btn.btn-lg.btn-primary(onclick='pause()') Toggle Pause
-			button.btn.btn-lg.btn-danger(onclick='kill()') Kill
+			.row
+				button.btn.btn-lg.btn-primary(onclick='launch()') Launch
+			.row
+				button.btn.btn-lg.btn-primary(onclick='pause()') Toggle Pause
+			.row
+				button.btn.btn-lg.btn-primary(onclick='mode()') Mode
+			.row
+				button.btn.btn-lg.btn-danger(onclick='kill()') Kill
 	include ../includes/scripts_common
 	script.
 
@@ -25,6 +30,10 @@ html
 
 		function pause() {
 			send_cmd('pause');
+		}
+
+		function mode() {
+			send_cmd('mode');
 		}
 
 		function kill() {

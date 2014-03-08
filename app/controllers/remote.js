@@ -44,16 +44,25 @@ exports.command = function (req, res, next) {
 			
 		}
 		break;
+		
 		case 'pause':
 		if(ambitv_process) {
 			ambitv_process.stdin.write('t');
 		}
 		break;
+		
 		case 'kill':
 		if(ambitv_process) {
 			ambitv_process.kill();
 		}
 		break;
+
+		case 'mode':
+		if(ambitv_process) {
+			ambitv_process.stdin.write(' ');	
+		}
+		break;
+
 	}
 
 	res.send({success:true});
