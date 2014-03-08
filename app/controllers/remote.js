@@ -27,15 +27,6 @@ exports.command = function (req, res, next) {
 				console.log(common.util.format('out: %s',data));
 			});
 
-			proc.stdout.on('readable', function() {
-				console.log(common.util.format('readable'));
-				while (true) {
-            		var data = proc.stdout.read();
-            		console.log('read: '+data);
-            		if (data == null) { break; }
-        		}
-			});
-
 			proc.stderr.on('data', function(data) {
 				console.log(common.util.format('err: %s',data));
 			});
