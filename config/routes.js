@@ -5,9 +5,8 @@
 
 
 // controllers
-var ui = require('ui');
 var remote = require('remote');
-
+var conf = require('conf');
 
 /**
  * Expose
@@ -17,9 +16,14 @@ var remote = require('remote');
 module.exports = function (app) {
 
 	app.route('/')
-	.get(ui.index);
+	.get(remote.ui)
 
 	app.route('/remote/:command')
-	.post(remote.command);
+	.post(remote.command)
+
+	app.route('/conf')
+	.get(conf.ui)
+	.post(conf.save_update)
+	
 
 }

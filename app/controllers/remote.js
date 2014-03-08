@@ -11,7 +11,6 @@ var child_process = require('child_process');
 var proc;
 var bin_path = common.util.format('%s/bin/ambi-tv',common.config.root);
 
-conf.update();
 exports.command = function (req, res, next) {
 
 	var cmd = req.params['command'];
@@ -78,6 +77,13 @@ exports.command = function (req, res, next) {
 
 	res.send({success:true});
 	
+	
+}
+
+// UI
+exports.ui = function (req, res, next) {
+
+	res.render('../views/remote', {});
 	
 }
 

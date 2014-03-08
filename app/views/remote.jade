@@ -1,0 +1,48 @@
+doctype html
+html
+	include ./includes/head
+	body
+		.container
+			.row
+				button.btn.btn-hg.btn-primary(onclick='launch()') Launch
+			.row
+				button.btn.btn-hg.btn-primary(onclick='pause()') Toggle Pause
+			.row
+				button.btn.btn-hg.btn-primary(onclick='mode()') Toggle Mode
+			.row
+				button.btn.btn-hg.btn-primary(onclick='config()') Config
+			.row
+				button.btn.btn-hg.btn-danger(onclick='kill()') Kill
+	include ./includes/scripts_common
+	script.
+
+		function send_cmd(cmd, args) {
+			$.post(
+				'remote/'+cmd, 
+				args || {}, 
+				function(result){
+					
+				}
+			);
+		}
+
+		function launch() {
+			send_cmd('launch');
+		}
+
+		function pause() {
+			send_cmd('pause');
+		}
+
+		function mode() {
+			send_cmd('mode');
+		}
+
+		function kill() {
+			send_cmd('kill');
+		}
+
+		function config() {
+			location.href = '/conf';
+		}
+

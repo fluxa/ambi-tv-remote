@@ -1,0 +1,27 @@
+doctype html
+html
+	include ./includes/head
+	body
+		.container
+			form(action='/conf', method='post')#my_conf_form
+				for key in Object.keys(my_conf)
+					.form-group
+						.input-group
+							span.input-group-addon #{key}
+							input(type='number', value='#{my_conf[key]}', name='#{key}').form-control.input-hg
+				.row
+					button.btn.btn-hg.btn-danger(onclick='save()') Save & Update
+			.row
+				button.btn.btn-hg.btn-warning(onclick='back()') Back
+	include ./includes/scripts_common
+	script.
+
+		function back() {
+			location.href = '/';
+		}
+
+		function save() {
+			$('#my_conf_form').submit();
+		}
+
+

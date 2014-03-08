@@ -5,11 +5,10 @@
 
 var common = require('../util/common');
 var remote = require('./remote');
+var conf = require('./conf');
 
-exports.index = function (req, res, next) {
 
-	res.render('../views/ui/index', {});
-	
-}
+
+
 
 
