@@ -4,14 +4,14 @@
  */
 
 var common = require('../util/common');
+var conf = require('./conf');
 var child_process = require('child_process');
 
 
 var proc;
 var bin_path = common.util.format('%s/bin/ambi-tv',common.config.root);
-var config_path = common.util.format('%s/ambi-tv.conf',common.config.root);
 
-
+conf.update();
 exports.command = function (req, res, next) {
 
 	var cmd = req.params['command'];
@@ -20,7 +20,7 @@ exports.command = function (req, res, next) {
 		case 'launch':
 		if(!proc) {
 
-			proc = child_process.spawn('ambi-tv',['-f', config_path]);
+			proc = child_process.spawn('ambi-tv',['-f', conf.path]);
 			//proc = child_process.spawn(common.util.format('%s/test.sh',common.config.root));
 
 			proc.stdout.on('data', function(data) {
