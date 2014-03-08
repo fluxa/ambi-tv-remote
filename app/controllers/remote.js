@@ -21,6 +21,7 @@ exports.command = function (req, res, next) {
 		if(!ambitv_process) {
 
 			ambitv_process = child_process.spawn('ambi-tv');
+			//ambitv_process = child_process.spawn('python');
 
 			ambitv_process.stdout.on('data', function(data) {
 				console.log(common.util.format('out: %s',data));
@@ -31,12 +32,22 @@ exports.command = function (req, res, next) {
 			});
 
 			ambitv_process.on('close', function(code) {
-				console.log(common.util.format('ambi-tv exited with code %s',code));
+				console.log(common.util.format('ambi-tv closed with code %s',code));
 				ambitv_process = null;
 			});
 
 			ambitv_process.on('error', function(err) {
 				console.log(common.util.format('ambi-tv error: %s',JSON.stringify(err)));
+				ambitv_process = null;
+			});
+
+			ambitv_process.on('message', function(message) {
+				console.log(common.util.format('ambi-tv message: %s',JSON.stringify(message)));
+				
+			});
+
+			ambitv_process.on('exit', function(code) {
+				console.log(common.util.format('ambi-tv exited with code %s',code));
 				ambitv_process = null;
 			});
 
