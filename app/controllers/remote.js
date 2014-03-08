@@ -20,7 +20,7 @@ exports.command = function (req, res, next) {
 		case 'launch':
 		if(!proc) {
 
-			proc = child_process.spawn('ambi-tv');
+			proc = child_process.spawn('ambi-tv',['-f', config_path]);
 			//proc = child_process.spawn(common.util.format('%s/test.sh',common.config.root));
 
 			proc.stdout.on('data', function(data) {
