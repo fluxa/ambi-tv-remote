@@ -7,7 +7,7 @@ var common = require('../util/common');
 var child_process = require('child_process');
 
 
-var ambitv_process;
+var proc;
 var bin_path = common.util.format('%s/bin/ambi-tv',common.config.root);
 var config_path = common.util.format('%s/ambi-tv.conf',common.config.root);
 
@@ -18,59 +18,68 @@ exports.command = function (req, res, next) {
 	
 	switch(cmd) {
 		case 'launch':
-		if(!ambitv_process) {
+		if(!proc) {
 
-			ambitv_process = child_process.spawn('ambi-tv');
-			//ambitv_process = child_process.spawn('python');
+			proc = child_process.spawn('ambi-tv');
+			//proc = child_process.spawn(common.util.format('%s/test.sh',common.config.root));
 
-			ambitv_process.stdout.on('data', function(data) {
+			proc.stdout.on('data', function(data) {
 				console.log(common.util.format('out: %s',data));
 			});
 
-			ambitv_process.stderr.on('data', function(data) {
+			proc.stdout.on('readable', function() {
+				console.log(common.util.format('readable'));
+				while (true) {
+            		var data = proc.stdout.read();
+            		console.log('read: '+data);
+            		if (data == null) { break; }
+        		}
+			});
+
+			proc.stderr.on('data', function(data) {
 				console.log(common.util.format('err: %s',data));
 			});
 
-			ambitv_process.on('close', function(code) {
+			proc.on('close', function(code) {
 				console.log(common.util.format('ambi-tv closed with code %s',code));
-				ambitv_process = null;
+				proc = null;
 			});
 
-			ambitv_process.on('error', function(err) {
+			proc.on('error', function(err) {
 				console.log(common.util.format('ambi-tv error: %s',JSON.stringify(err)));
-				ambitv_process = null;
+				proc = null;
 			});
 
-			ambitv_process.on('message', function(message) {
+			proc.on('message', function(message) {
 				console.log(common.util.format('ambi-tv message: %s',JSON.stringify(message)));
 				
 			});
 
-			ambitv_process.on('exit', function(code) {
+			proc.on('exit', function(code) {
 				console.log(common.util.format('ambi-tv exited with code %s',code));
-				ambitv_process = null;
+				proc = null;
 			});
 
-			console.log(common.util.format('spawned ambi-tv process with pid %s',ambitv_process.pid));
+			console.log(common.util.format('spawned ambi-tv process with pid %s',proc.pid));
 			
 		}
 		break;
 		
 		case 'pause':
-		if(ambitv_process) {
-			ambitv_process.stdin.write('t');
+		if(proc) {
+			proc.stdin.write('t');
 		}
 		break;
 		
 		case 'kill':
-		if(ambitv_process) {
-			ambitv_process.kill();
+		if(proc) {
+			proc.kill();
 		}
 		break;
 
 		case 'mode':
-		if(ambitv_process) {
-			ambitv_process.stdin.write(' ');	
+		if(proc) {
+			proc.stdin.write(' ');	
 		}
 		break;
 
