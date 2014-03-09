@@ -16,3 +16,5 @@ node_modules
 .DS_Store
 ambi-tv.conf
 my-conf.json
+pid/app.pid
+log/app.log

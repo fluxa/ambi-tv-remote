@@ -1,0 +1,1 @@
+# When running as service, this folder will contain logs
