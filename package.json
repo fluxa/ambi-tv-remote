@@ -11,7 +11,7 @@
     "npm": "1.3.x"
   },
   "scripts": {
-    "start": "NODE_PATH=./app/controllers PORT=5000 ./node_modules/.bin/nodemon server.js"
+    "start": "PORT=5000 ./node_modules/.bin/nodemon server.js"
   },
   "dependencies": {
     "express": "latest",

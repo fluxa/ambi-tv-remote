@@ -30,10 +30,10 @@ sudo cp init.d/ambi-tv-remote /etc/init.d/
 
 ### Test if it works
 ```
-sudo /etc/init.d/ambi-tv-remote start
-sudo /etc/init.d/ambi-tv-remote status
-sudo /etc/init.d/ambi-tv-remote restart
-sudo /etc/init.d/ambi-tv-remote stop
+/etc/init.d/ambi-tv-remote start
+/etc/init.d/ambi-tv-remote status
+/etc/init.d/ambi-tv-remote restart
+/etc/init.d/ambi-tv-remote stop
 ```
 
 ### Add it to the defaults and reboot

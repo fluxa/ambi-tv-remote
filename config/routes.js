@@ -5,8 +5,8 @@
 
 
 // controllers
-var remote = require('remote');
-var conf = require('conf');
+var remote = require('../app/controllers/remote');
+var conf = require('../app/controllers/conf');
 
 /**
  * Expose
