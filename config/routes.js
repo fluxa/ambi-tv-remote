@@ -21,8 +21,7 @@ module.exports = function (app) {
 	app.route('/remote/:command')
 	.post(remote.command)
 
-	app.route('/conf')
-	.get(conf.ui)
+	app.route('/save')
 	.post(conf.save_update)
 	
 

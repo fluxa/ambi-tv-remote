@@ -2,17 +2,23 @@ doctype html
 html
 	include ./includes/head
 	body
-		.container
-			.row
-				button.btn.btn-hg.btn-primary(onclick='launch()') Launch
-			.row
-				button.btn.btn-hg.btn-primary(onclick='pause()') Toggle Pause
-			.row
-				button.btn.btn-hg.btn-primary(onclick='mode()') Toggle Mode
-			.row
-				button.btn.btn-hg.btn-primary(onclick='config()') Config
-			.row
-				button.btn.btn-hg.btn-danger(onclick='kill()') Kill
+		.container#my_menu
+			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='launch()') Launch
+			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='pause()') Toggle Pause
+			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='mode()') Toggle Mode
+			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='config()') Config
+			button.btn.btn-hg.btn-danger.btn-block.btn-embossed(onclick='kill()') Kill
+
+		.container(style='display:none')#my_conf
+			form(action='/save', method='post')#my_conf_form
+				for key in Object.keys(my_conf)
+					.form-group
+						.input-group
+							span.input-group-addon #{key}
+							input(type='number', value='#{my_conf[key]}', name='#{key}').form-control.input-hg
+				
+			button.btn.btn-hg.btn-danger.btn-block.btn-embossed(onclick='save()') Save & Update
+			button.btn.btn-hg.btn-warning.btn-block.btn-embossed(onclick='back()') Back
 	include ./includes/scripts_common
 	script.
 
@@ -43,6 +49,16 @@ html
 		}
 
 		function config() {
-			location.href = '/conf';
+			$('#my_conf').show();
+			$('#my_menu').hide();
+		}
+
+		function back() {
+			$('#my_conf').hide();
+			$('#my_menu').show();
+		}
+
+		function save() {
+			$('#my_conf_form').submit();
 		}
 
