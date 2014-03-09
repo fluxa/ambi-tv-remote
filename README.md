@@ -20,5 +20,24 @@ sudo ln -s /opt/node/bin/npm /usr/local/bin/npm
 cd ambi-tv
 make
 sudo cp ambi-tv/bin/ambi-tv /usr/local/bin/
-sudo cp ambi-tv/sample.conf /etc/ambi-tv.conf
+```
+
+### Setup as a service
+First make sure to take a look at the init script and make changes according to your settings (APP_DIR)
+```
+sudo cp init.d/ambi-tv-remote /etc/init.d/
+```
+
+### Test if it works
+```
+sudo /etc/init.d/ambi-tv-remote start
+sudo /etc/init.d/ambi-tv-remote status
+sudo /etc/init.d/ambi-tv-remote restart
+sudo /etc/init.d/ambi-tv-remote stop
+```
+
+### Add it to the defaults and reboot
+```
+sudo update-rc.d ambi-tv-remote defaults
+sudo reboot
 ```
