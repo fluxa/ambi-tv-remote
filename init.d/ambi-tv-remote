@@ -1,12 +1,12 @@
 #!/bin/sh
 
-NODE_APP='server.js'
-APP_DIR='/home/pi/ambi-tv-remote';
+NODE_APP="server.js"
+APP_DIR="/home/pi/ambi-tv-remote"
 PID_FILE=$APP_DIR/pid/app.pid
 LOG_FILE=$APP_DIR/log/app.log
 NODE_PATH=$APP_DIR/app/controllers
 PORT=5000
-NODE_EXEC='/usr/local/bin/node'
+NODE_EXEC="/usr/local/bin/node"
 
 ###############
 
