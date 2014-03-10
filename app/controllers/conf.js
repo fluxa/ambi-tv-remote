@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var configurables = ['crop-left', 'crop-top', 'crop-right', 'crop-bottom', 'blended-frames', 'box-width', 'box-height'];
+var configurables = ['crop-left', 'crop-top', 'crop-right', 'crop-bottom', 'blended-frames', 'box-width', 'box-height','speed'];
 var fs = require('fs');
 var my_conf_path = common.util.format('%s/my-conf.json',common.config.root); 
 var conf_path = common.util.format('%s/ambi-tv.conf',common.config.root);
