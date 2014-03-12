@@ -41,3 +41,14 @@ sudo cp init.d/ambi-tv-remote /etc/init.d/
 sudo update-rc.d ambi-tv-remote defaults
 sudo reboot
 ```
+
+## Disabled power management on USB Wifi Dongle (RTL8188CUS/RTL8192cu family)
+```
+sudo nano /etc/modprobe.d/8192cu.conf
+```
+Paste
+```
+# Disable power management
+options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
+```
+Save and Reboot
