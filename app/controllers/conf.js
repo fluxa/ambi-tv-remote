@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var configurables = ['crop-left', 'crop-top', 'crop-right', 'crop-bottom', 'blended-frames', 'box-width', 'box-height','speed'];
+var configurables = ['crop-left', 'crop-top', 'crop-right', 'crop-bottom', 'blended-frames', 'box-width', 'box-height','speed','leds-left','leds-top','leds-right','leds-bottom','led-inset-left','led-inset-top','led-inset-right','led-inset-bottom','gamma-red','gamma-green','gamma-blue'];
 var fs = require('fs');
 var my_conf_path = common.util.format('%s/my-conf.json',common.config.root); 
 var conf_path = common.util.format('%s/ambi-tv.conf',common.config.root);
@@ -68,23 +68,34 @@ exports.save_update = function(req, res, next) {
 function get_my_conf() {
 	var exists = fs.existsSync(my_conf_path);
 	if(!exists) {
-		var my_conf_defaults = {};
-		common._.each(configurables, function(conf_key, index, all) {
-			common._.each(conf, function(module, index, all) {
-				var key = Object.keys(module);
-				var props = module[key];
-				common._.each(props, function(prop, index, all) {
-					var prop_key = Object.keys(prop)[0];
-					if(prop_key === conf_key) {
-						my_conf_defaults[conf_key] = prop[conf_key]
-					}
-				});
+		update_my_conf();
+	} else {
+		var myconf = require(my_conf_path);
+		if(configurables.length != Object.keys(myconf).length) {
+			update_my_conf(myconf)
+			require.cache[my_conf_path] = null;
+			myconf = require(my_conf_path);
+		}
+		return myconf;
+	}
+	
+}
+
+function update_my_conf(existing) {
+	var my_conf_defaults = {};
+	common._.each(configurables, function(conf_key, index, all) {
+		common._.each(conf, function(module, index, all) {
+			var key = Object.keys(module);
+			var props = module[key];
+			common._.each(props, function(prop, index, all) {
+				var prop_key = Object.keys(prop)[0];
+				if(prop_key === conf_key) {
+					my_conf_defaults[conf_key] = existing[conf_key] || prop[conf_key]
+				}
 			});
 		});
-		
-		fs.writeFileSync(my_conf_path, JSON.stringify(my_conf_defaults), 'utf8');
-	}
-	return require(my_conf_path);
+	});
+	fs.writeFileSync(my_conf_path, JSON.stringify(my_conf_defaults), 'utf8');
 }
 
 exports.get_my_conf = function() {

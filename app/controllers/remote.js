@@ -83,7 +83,10 @@ exports.command = function (req, res, next) {
 // UI
 exports.ui = function (req, res, next) {
 
-	res.render('../views/remote', {my_conf: conf.get_my_conf()});
+	res.render('../views/remote', {
+		my_conf: conf.get_my_conf(),
+		title: 'remote'
+	});
 	
 }
 

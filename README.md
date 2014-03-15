@@ -21,6 +21,10 @@ cd ambi-tv
 make
 sudo cp ambi-tv/bin/ambi-tv /usr/local/bin/
 ```
+### Fixing STK1160 gray stripes
+```
+sudo sh -c "echo 'options easycap bars=0' >> /etc/modprobe.d/easycap.conf"
+```
 
 ### Setup as a service
 First make sure to take a look at the init script and make changes according to your settings (APP_DIR)

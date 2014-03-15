@@ -9,13 +9,14 @@ html
 			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='config()') Config
 			button.btn.btn-hg.btn-danger.btn-block.btn-embossed(onclick='kill()') Kill
 
+		//- Configuration
 		.container(style='display:none')#my_conf
 			form(action='/save', method='post')#my_conf_form
 				for key in Object.keys(my_conf)
 					.form-group
 						.input-group
 							span.input-group-addon #{key}
-							input(type='number', value='#{my_conf[key]}', name='#{key}').form-control.input-hg
+							input(type='tel', value='#{my_conf[key]}', name='#{key}').form-control.input-hg
 				
 			button.btn.btn-hg.btn-danger.btn-block.btn-embossed(onclick='save()') Save & Update
 			button.btn.btn-hg.btn-warning.btn-block.btn-embossed(onclick='back()') Back
