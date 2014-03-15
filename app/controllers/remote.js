@@ -19,8 +19,8 @@ exports.command = function (req, res, next) {
 		case 'launch':
 		if(!proc) {
 
-			proc = child_process.spawn('/usr/local/bin/ambi-tv',['-f', conf.path]);
-			//proc = child_process.spawn(common.util.format('%s/test.sh',common.config.root));
+			console.log(common.util.format('stating process: %s',bin_path);
+			proc = child_process.spawn(bin_path,['-f', conf.path]);
 
 			proc.stdout.on('data', function(data) {
 				console.log(common.util.format('out: %s',data));
