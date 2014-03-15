@@ -9,7 +9,7 @@ var child_process = require('child_process');
 
 
 var proc;
-var bin_path = common.util.format('%s/bin/ambi-tv',common.config.root);
+var bin_path = common.util.format('%s/ambi-tv/bin/ambi-tv',common.config.root);
 
 exports.command = function (req, res, next) {
 
