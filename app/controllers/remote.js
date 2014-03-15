@@ -19,7 +19,7 @@ exports.command = function (req, res, next) {
 		case 'launch':
 		if(!proc) {
 
-			console.log(common.util.format('stating process: %s',bin_path);
+			console.log(common.util.format('starting process: %s',bin_path));
 			proc = child_process.spawn(bin_path,['-f', conf.path]);
 
 			proc.stdout.on('data', function(data) {
