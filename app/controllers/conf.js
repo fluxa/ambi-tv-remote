@@ -90,7 +90,12 @@ function update_my_conf(existing) {
 			common._.each(props, function(prop, index, all) {
 				var prop_key = Object.keys(prop)[0];
 				if(prop_key === conf_key) {
-					my_conf_defaults[conf_key] = existing[conf_key] || prop[conf_key]
+					if(existing) {
+						my_conf_defaults[conf_key] = existing[conf_key] || prop[conf_key]	
+					} else {
+						my_conf_defaults[conf_key] = prop[conf_key]	
+					}
+					
 				}
 			});
 		});

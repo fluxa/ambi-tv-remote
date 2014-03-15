@@ -14,6 +14,10 @@ sudo cp -r node-v0.11.10-linux-arm-pi/* /opt/node
 sudo ln -s /opt/node/bin/node /usr/local/bin/node
 sudo ln -s /opt/node/bin/npm /usr/local/bin/npm
 ```
+### Intall dependencies
+```
+npm install
+```
 
 ### Compiling ambi-tv
 ```
