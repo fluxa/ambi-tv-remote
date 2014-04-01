@@ -1,6 +1,6 @@
 /* MIT license */
 
-var SPI = require('spi'),
+var SPI = require('pi-spi'),
 	Color = require('color');
 
 var ledCount = 32,
@@ -36,16 +36,16 @@ var LPD8806 = function(leds, dev){
 		gamma[g] = 0x80 | Math.floor( Math.pow(g/255, 2.5) * 127 + 0.5);
 	}
 
-	// spi = SPI.initialize(dev);
-	// spi.clockSpeed(20000000);
+	spi = SPI.initialize(dev);
+	spi.clockSpeed(20000000);
 
-	spi = new SPI.Spi(device, {
-		'mode': SPI.MODE['MODE_0'],
-		'chipSelect': SPI.CS['none'],
-		'maxSpeed': 20000000
-	},function(s) {
-		s.open();
-	});
+	// spi = new SPI.Spi(device, {
+	// 	'mode': SPI.MODE['MODE_0'],
+	// 	'chipSelect': SPI.CS['none'],
+	// 	'maxSpeed': 20000000
+	// },function(s) {
+	// 	s.open();
+	// });
 	
 	//Initialize the Complete RGB LED Strip
 	this.update();
@@ -89,7 +89,11 @@ LPD8806.prototype.update = function(){
 	var _buffer = buffer.slice(0, buffer.length);
 	_buffer.push(new Buffer([0x00, 0x00, 0x00]));
 	_buffer.push(new Buffer([0x00]));
-	spi.write(Buffer.concat(_buffer));
+	spi.write(Buffer.concat(_buffer), function(err) {
+		if(err) {
+			console.log(err);
+		}
+	});
 };
 
 
