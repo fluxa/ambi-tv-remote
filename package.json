@@ -22,8 +22,7 @@
     "underscore": "latest",
     "moment": "latest",
     "less-middleware": "latest",
-    "async": "latest",
-    "pi-spi": "latest"
+    "async": "latest"
   },
   "devDependencies": {
     "nodemon": "latest"
