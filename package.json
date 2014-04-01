@@ -21,7 +21,8 @@
     "jade": "latest",
     "underscore": "latest",
     "less-middleware": "latest",
-    "async": "latest"
+    "async": "latest",
+    "color": "latest"
   },
   "devDependencies": {
     "nodemon": "latest"

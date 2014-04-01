@@ -1,7 +1,7 @@
 /* MIT license */
 
 var SPI = require('spi'),
-	Color = require("color");
+	Color = require('color');
 
 var ledCount = 32,
 	device = '/dev/spidev0.0',
@@ -43,9 +43,10 @@ var LPD8806 = function(leds, dev){
 		'mode': SPI.MODE.MODE_0,
 		'chipSelect': SPI.CS.none,
 		'maxSpeed': 20000000
+	},function(s) {
+		s.open();
 	});
-	spi.open();
-
+	
 	//Initialize the Complete RGB LED Strip
 	this.update();
 };

@@ -102,7 +102,7 @@ html
 		})
 		.on('dragstop.spectrum', function(e, color) {
 			var rgb = color.toRgb();
-			send_cmd('mood_color|' + rgb.r + ',' + rgb.g + ',' + rgb.b);
+			send_cmd('mood_color', {rgb:rgb});
 		});
 
 	
