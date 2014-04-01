@@ -23,7 +23,7 @@
     "moment": "latest",
     "less-middleware": "latest",
     "async": "latest",
-    "lpd8806": "latest"
+    "pi-spi": "latest"
   },
   "devDependencies": {
     "nodemon": "latest"

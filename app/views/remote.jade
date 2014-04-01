@@ -24,12 +24,13 @@ html
 		//- Mood
 		.container(style='display:none')#mood
 			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='send_cmd("mood_launch")') Toggle ON/OFF
-			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='send_cmd("mood_color")') Color
+			input(type='text')#mood_color
 			button.btn.btn-hg.btn-warning.btn-block.btn-embossed(onclick='main()') Back
 
 				
 			
 	include ./includes/scripts_common
+
 	script.
 
 		function send_cmd(cmd, args) {
@@ -80,4 +81,33 @@ html
 		function save() {
 			$('#my_conf_form').submit();
 		}
+
+		// Color picker
+		$('#mood_color').spectrum({
+			flat: true,
+			showInput: false,
+			showButtons: false,
+			move: function (color) {
+				
+			},
+			show: function () {
+
+			},
+			beforeShow: function () {
+
+			},
+			hide: function (color) {
+
+			}
+		})
+		.on('dragstop.spectrum', function(e, color) {
+			var rgb = color.toRgb();
+			send_cmd('mood_color|' + rgb.r + ',' + rgb.g + ',' + rgb.b);
+		});
+
+	
+		$(function(){
+			var w = $('#my_menu').width() - 25;
+			$('.sp-picker-container').width(w);
+		});
 
