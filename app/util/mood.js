@@ -19,9 +19,9 @@ exports.launch = function() {
 	}
 }
 
-exports.color = function() {
+exports.color = function(r,g,b) {
 	if(lpd8806) {
-		lpd8806.fillRGB(0,0,255);
+		lpd8806.fillRGB(r,g,b);
 	}
 }
 

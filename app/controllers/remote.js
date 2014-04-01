@@ -34,7 +34,10 @@ exports.command = function (req, res) {
 		break;
 
 		case 'mood_color':
-		mood.color();
+		var rgb = req.body.rgb;
+		if(rgb) {
+			mood.color(rgb.r, rgb.g, rgb.b);	
+		}
 		break;
 	}
 
