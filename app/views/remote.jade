@@ -23,8 +23,9 @@ html
 
 		//- Mood
 		.container(style='display:none')#mood
-			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='send_cmd("mood_launch")') Toggle ON/OFF
+			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='send_cmd("mood_off")') All Off
 			input(type='text')#mood_color
+			input(type='range', max=1.0, min=0.0)
 			button.btn.btn-hg.btn-warning.btn-block.btn-embossed(onclick='main()') Back
 
 				

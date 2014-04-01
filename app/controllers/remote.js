@@ -29,13 +29,12 @@ exports.command = function (req, res) {
 		ambitv.mode();
 		break;
 
-		case 'mood_launch':
-		mood.launch();
+		case 'mood_off':
+		mood.off();
 		break;
 
 		case 'mood_color':
 		var rgb = req.body.rgb;
-		console.log(rgb);
 		if(rgb) {
 			mood.color(rgb.r, rgb.g, rgb.b);	
 		}
