@@ -16,6 +16,6 @@ module.exports = function (app) {
 
 	app.get('/', remote.ui);
 	app.post('/remote/:command', remote.command);
-	app.route('/save', remote.config_save);
+	app.post('/save', remote.config_save);
 	
 }
