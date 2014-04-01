@@ -35,6 +35,7 @@ exports.command = function (req, res) {
 
 		case 'mood_color':
 		var rgb = req.body.rgb;
+		console.log(rgb);
 		if(rgb) {
 			mood.color(rgb.r, rgb.g, rgb.b);	
 		}

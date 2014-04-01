@@ -27,7 +27,7 @@ var LPD8806 = function(leds, dev){
 
 	ledCount = leds || ledCount;
 	device = dev || device;
-	c_order = ChannelOrder.GRB;
+	c_order = ChannelOrder.RGB;
 
 	for(var i = 0; i < ledCount; i++){
 		buffer[i] = new Buffer([0x80, 0x80, 0x80]);
