@@ -13,7 +13,7 @@ var lpd8806 = new lpd8806_lib(num_leds, device);
 
 exports.off = function() {
 	if(lpd8806) {
-		lpd8806.allOff();
+		lpd8806.allOFF();
 		//lpd8806.updateBrightness(1.0);
 	}
 }
