@@ -43,24 +43,19 @@ function update(callback) {
 exports.update = update;
 
 // Saves changes to my_conf to disk
-exports.save_update = function(req, res, next) {
+exports.save = function(updated_conf, callback) {
 
-	var updated = req.body;
-	if(updated) {
-		my_conf = updated;
-		var data = JSON.stringify(my_conf);
-		fs.writeFile(my_conf_path, data, function(err) {
-			if(err) {
-				console.log('error saving my_conf');
-			} else {
-				update(function(err) {
-					res.redirect('/');
-				});
-			}
-		});
-	} else {
-		res.redirect('/');
-	}
+	my_conf = updated_conf;
+	var data = JSON.stringify(my_conf);
+	fs.writeFile(my_conf_path, data, function(err) {
+		if(err) {
+			callback('error saving my_conf');
+		} else {
+			update(function(err) {
+				callback(err);
+			});
+		}
+	});
 
 }
 

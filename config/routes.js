@@ -6,7 +6,6 @@
 
 // controllers
 var remote = require('../app/controllers/remote');
-var conf = require('../app/controllers/conf');
 
 /**
  * Expose
@@ -22,7 +21,7 @@ module.exports = function (app) {
 	.post(remote.command)
 
 	app.route('/save')
-	.post(conf.save_update)
+	.post(remote.config_save)
 	
 
 }

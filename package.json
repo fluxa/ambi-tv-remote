@@ -11,7 +11,8 @@
     "npm": "1.3.x"
   },
   "scripts": {
-    "start": "PORT=5000 ./node_modules/.bin/nodemon server.js"
+    "start": "PORT=5000 ./node_modules/.bin/nodemon server.js",
+    "debug": "PORT=5000 NODE_ENV=DEBUGGING ./node_modules/.bin/nodemon server.js"
   },
   "dependencies": {
     "express": "latest",
@@ -21,7 +22,8 @@
     "underscore": "latest",
     "moment": "latest",
     "less-middleware": "latest",
-    "async": "latest"
+    "async": "latest",
+    "lpd8806": "latest"
   },
   "devDependencies": {
     "nodemon": "latest"
