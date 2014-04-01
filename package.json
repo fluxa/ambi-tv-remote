@@ -22,7 +22,8 @@
     "underscore": "latest",
     "less-middleware": "latest",
     "async": "latest",
-    "color": "latest"
+    "color": "latest",
+    "pi-spi": "latest"
   },
   "devDependencies": {
     "nodemon": "latest"
