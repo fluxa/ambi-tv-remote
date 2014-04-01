@@ -14,7 +14,7 @@ var lpd8806;
 exports.launch = function() {
 	if(!lpd8806) {
 		lpd8806 = new lpd8806_lib(num_leds, device);
-		lpd8806.fillRGB(255,0,0);
+		lpd8806.fillRGB(0,255,0);
 		lpd8806.updateBrightness(1.0);
 	}
 }
