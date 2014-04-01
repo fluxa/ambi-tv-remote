@@ -8,7 +8,7 @@ var ambitv = require('../util/ambitv');
 var mood = require('../util/mood');
 
 // Manages commands to ambitv process
-exports.command = function (req, res, next) {
+exports.command = function (req, res) {
 
 	var cmd = req.params['command'];
 	
@@ -44,7 +44,7 @@ exports.command = function (req, res, next) {
 }
 
 // UI
-exports.ui = function (req, res, next) {
+exports.ui = function (req, res) {
 
 	res.render('../views/remote', {
 		my_conf: conf.get_my_conf(),

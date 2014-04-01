@@ -14,14 +14,8 @@ var remote = require('../app/controllers/remote');
 
 module.exports = function (app) {
 
-	app.route('/')
-	.get(remote.ui)
-
-	app.route('/remote/:command')
-	.post(remote.command)
-
-	app.route('/save')
-	.post(remote.config_save)
+	app.get('/', remote.ui);
+	app.post('/remote/:command', remote.command);
+	app.route('/save', remote.config_save);
 	
-
 }
