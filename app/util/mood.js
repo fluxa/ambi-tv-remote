@@ -4,11 +4,7 @@
  */
 
 
-var lpd8806_lib;
-
-if(!common.debugging) {
-	//lpd8806_lib = require('lpd8806');
-}
+var lpd8806_lib = require('./lpd8806');
 
 var num_leds = 100;
 var device = '/dev/spidev0.0';
