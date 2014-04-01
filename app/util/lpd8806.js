@@ -40,8 +40,8 @@ var LPD8806 = function(leds, dev){
 	// spi.clockSpeed(20000000);
 
 	spi = new SPI.Spi(device, {
-		'mode': SPI.MODE.MODE_0,
-		'chipSelect': SPI.CS.none,
+		'mode': SPI.MODE['MODE_0'],
+		'chipSelect': SPI.CS['none'],
 		'maxSpeed': 20000000
 	},function(s) {
 		s.open();
