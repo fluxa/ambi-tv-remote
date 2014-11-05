@@ -12,5 +12,6 @@ var rootPath = path.resolve(__dirname + '../..')
 
 module.exports = {
 	root: rootPath,
-	appURL: 'http://localhost'
+	appURL: 'http://localhost',
+	isDebugging: process.env.NODE_ENV === 'DEBUGGING'
 }

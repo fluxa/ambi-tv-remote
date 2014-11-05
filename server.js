@@ -6,8 +6,6 @@
 var express = require('express');
 var http = require('http');
 var common = require('./app/util/common');
-http.globalAgent.maxSockets = Infinity;
-
 var app = express();
 
 // Bootstrap application settings

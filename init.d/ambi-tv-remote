@@ -50,6 +50,7 @@ stop_app (){
 
 case "$1" in
     start)
+        stop_app
         start_app
     ;;
 

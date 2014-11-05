@@ -2,37 +2,120 @@ doctype html
 html
 	include ./includes/head
 	body
-		.container#my_menu
-			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='launch()') Launch
-			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='pause()') Toggle Pause
-			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='config()') Config
-			button.btn.btn-hg.btn-danger.btn-block.btn-embossed(onclick='kill()') Kill
-			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='mood()') Mood
-
-		//- Configuration
-		.container(style='display:none')#my_conf
-			form(action='/save', method='post')#my_conf_form
-				for key in Object.keys(my_conf)
-					.form-group
-						.input-group
-							span.input-group-addon #{key}
-							input(type='text', value='#{my_conf[key]}', name='#{key}').form-control.input-hg
-
-				button.btn.btn-hg.btn-danger.btn-block.btn-embossed(onclick='save()') Save & Update
-				button.btn.btn-hg.btn-warning.btn-block.btn-embossed(onclick='main()') Back
-
-		//- Mood
-		.container(style='display:none')#mood
-			button.btn.btn-hg.btn-primary.btn-block.btn-embossed(onclick='send_cmd("mood_off")') All Off
-			input(type='text')#mood_color
-			input(type='range', max=1.0, min=0.0)
-			button.btn.btn-hg.btn-warning.btn-block.btn-embossed(onclick='main()') Back
-
+		.app-page(data-page='home')
+			.app-topbar.dark-blue
+				.app-title ambi-tv
+			.app-content
+				.app-section
+					.app-button.teal#btLaunch Launch
+					.app-button.red#btKill Kill
+					.app-button.teal#btPause Toggle Pause
+					.app-button.teal(data-target='config') Config
+				.app-section
+					.app-button.teal(data-target='mood') Mood Light
+		
+		.app-page(data-page='config')
+			.app-topbar.dark-blue
+				.app-button.left(data-back, data-autotitle)
+				.app-title config
+			.app-content
+				.app-section
+					form(action='/save', method='post')#my_conf_form
+						for key in Object.keys(my_conf)
+							b #{key}
+							input.app-input.teal(type='text', value='#{my_conf[key]}', name='#{key}')
+				.app-section
+					.app-button.teal#btSave Save & Update
+		
+		.app-page(data-page='mood')
+			.app-topbar.dark-blue
+				.app-button.left(data-back, data-autotitle)
+				.app-title mood
+			.app-content
+				.app-section
+					input(type='text')#mood_color
+				.app-section
+					.app-button.teal(onclick='send_cmd("mood_off")')#bt-off Turn Off
+					
+					//- input(type='range', max=1.0, min=0.0)
+		
 				
 			
 	include ./includes/scripts_common
 
 	script.
+		
+		App.controller('home', function (page) {
+			// Setup buttons
+			$(page).find('#btLaunch').on('click', function(){
+				send_cmd('launch');
+			});
+			
+			$(page).find('#btKill').on('click', function(){
+				send_cmd('kill');
+			});
+			
+			$(page).find('#btPause').on('click', function(){
+				send_cmd('pause');
+			});
+			
+		});
+		
+		App.controller('mood', function (page) {
+			setupMoodColorPicker($(page).find('#mood_color'));
+			$(page).on('appShow', function(){
+				var w = $(page).find('#bt-off').width() - 24;
+				$('.sp-picker-container').width(w);
+			})
+		});
+		
+		App.controller('config', function (page) {
+			$(page).find('#btSave').on('click', function(){
+				var form = $('#my_conf_form');
+				$.ajax({
+					type: form.attr('method'),
+					url: form.attr('action'),
+					data: form.serialize(),
+					success: function(msg){
+						App.back();   
+					},
+					error: function(){
+						//alert("failure");
+					}
+				});
+			})
+		});
+		
+		try {
+			App.restore();
+		} catch (err) {
+			App.load('home');
+		}
+		
+		function setupMoodColorPicker(element) {
+			$(element).spectrum({
+				flat: true,
+				showInput: false,
+				showButtons: false,
+				move: function (color) {
+					
+				},
+				show: function () {
+
+				},
+				beforeShow: function () {
+
+				},
+				hide: function (color) {
+
+				}
+			})
+			.on('dragstop.spectrum', function(e, color) {
+				var rgb = color.toRgb();
+				send_cmd('mood_color', {rgb:rgb});
+			});
+
+		}
 
 		function send_cmd(cmd, args) {
 			$.post(
@@ -44,71 +127,10 @@ html
 			);
 		}
 
-		function launch() {
-			send_cmd('launch');
-		}
-
-		function pause() {
-			send_cmd('pause');
-		}
-
 		function mode() {
 			send_cmd('mode');
 		}
 
-		function kill() {
-			send_cmd('kill');
-		}
-
-	
-		function config() {
-			$('#my_conf').show();
-			$('#my_menu').hide();
-			$('#mood').hide();
-		}
-
-		function main() {
-			$('#my_conf').hide();
-			$('#my_menu').show();
-			$('#mood').hide();
-		}
-
-		function mood() {
-			$('#my_conf').hide();
-			$('#my_menu').hide();
-			$('#mood').show();
-		}
-
-		function save() {
-			$('#my_conf_form').submit();
-		}
-
-		// Color picker
-		$('#mood_color').spectrum({
-			flat: true,
-			showInput: false,
-			showButtons: false,
-			move: function (color) {
-				
-			},
-			show: function () {
-
-			},
-			beforeShow: function () {
-
-			},
-			hide: function (color) {
-
-			}
-		})
-		.on('dragstop.spectrum', function(e, color) {
-			var rgb = color.toRgb();
-			send_cmd('mood_color', {rgb:rgb});
-		});
-
-	
 		$(function(){
-			var w = $('#my_menu').width() - 25;
-			$('.sp-picker-container').width(w);
+			
 		});
-

@@ -15,17 +15,20 @@ var path = require('path');
  */
 
 module.exports = function (app, config) {
-	
+
 	app.set('showStackError', true)
 
 	// use express favicon
 	app.use(favicon(config.root + '/public/images/favicon.ico'));
 
-	
+
 	// views config
 	app.set('views', config.root + '/app/views');
 	app.set('view engine', 'jade');
-	app.use(bodyParser());
+	app.use(bodyParser.urlencoded({
+		extended: true
+	}));
+	app.use(bodyParser.json());
 	app.locals.pretty = true;
 
 
