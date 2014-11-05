@@ -20,8 +20,6 @@
     "serve-favicon":"latest",
     "jade": "latest",
     "underscore": "latest",
-    "less-middleware": "latest",
-    "async": "latest",
     "color": "latest",
     "pi-spi": "latest"
   },

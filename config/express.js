@@ -6,7 +6,6 @@
 var express = require('express')
 var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
-var lessMiddleware = require('less-middleware');
 var pkg = require('../package');
 var path = require('path');
 
@@ -31,23 +30,8 @@ module.exports = function (app, config) {
 	app.use(bodyParser.json());
 	app.locals.pretty = true;
 
-
-	// less
-	app.use(lessMiddleware(
-		path.join(config.root,'/app/src/less'),
-		{
-			dest: path.join(config.root,'/public'),
-			prefix: '/stylesheets',
-			compress : true,
-			debug: false,
-			force: true
-		}
-	));
-
-
 	//static should be after less-middleware
 	app.use(express.static(config.root + '/public'))
-
 
 	// expose pkg and node env to views
 	app.use(function (req, res, next) {
