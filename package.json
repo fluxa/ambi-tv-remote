@@ -17,7 +17,7 @@
   "dependencies": {
     "express": "latest",
     "body-parser":"latest",
-    "static-favicon":"latest",
+    "serve-favicon":"latest",
     "jade": "latest",
     "underscore": "latest",
     "less-middleware": "latest",

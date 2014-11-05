@@ -324,7 +324,7 @@
           "dependencies": {
             "uglify-js": {
               "version": "2.4.15",
-              "from": "uglify-js@~2.4.0",
+              "from": "uglify-js@~2.4.12",
               "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-2.4.15.tgz",
               "dependencies": {
                 "async": {
@@ -742,9 +742,34 @@
       "from": "pi-spi@latest",
       "resolved": "https://registry.npmjs.org/pi-spi/-/pi-spi-0.8.7.tgz"
     },
-    "static-favicon": {
-      "version": "2.0.0-alpha",
-      "from": "static-favicon@latest"
+    "serve-favicon": {
+      "version": "2.1.6",
+      "from": "serve-favicon@latest",
+      "resolved": "https://registry.npmjs.org/serve-favicon/-/serve-favicon-2.1.6.tgz",
+      "dependencies": {
+        "etag": {
+          "version": "1.5.0",
+          "from": "etag@~1.5.0",
+          "resolved": "https://registry.npmjs.org/etag/-/etag-1.5.0.tgz",
+          "dependencies": {
+            "crc": {
+              "version": "3.0.0",
+              "from": "crc@3.0.0",
+              "resolved": "https://registry.npmjs.org/crc/-/crc-3.0.0.tgz"
+            }
+          }
+        },
+        "fresh": {
+          "version": "0.2.4",
+          "from": "fresh@0.2.4",
+          "resolved": "https://registry.npmjs.org/fresh/-/fresh-0.2.4.tgz"
+        },
+        "ms": {
+          "version": "0.6.2",
+          "from": "ms@0.6.2",
+          "resolved": "https://registry.npmjs.org/ms/-/ms-0.6.2.tgz"
+        }
+      }
     },
     "underscore": {
       "version": "1.7.0",
