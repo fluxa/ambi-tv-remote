@@ -9,7 +9,7 @@ var TWEEN = require('tween.js');
 
 var num_leds = 100;
 var device = '/dev/spidev0.0';
-var lpd8806 = common.isDebugging ? {} : new lpd8806_lib(num_leds, device);
+var lpd8806 = common.isDebugging ? {allOFF:function(){},fillRGB:function(){}} : new lpd8806_lib(num_leds, device);
 
 exports.off = function() {
 	if(lpd8806) {

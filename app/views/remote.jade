@@ -35,10 +35,10 @@ html
 				.app-section
 					input(type='text')#mood_color
 				.app-section
-					.app-button.teal(onclick='send_cmd("mood_off")')#bt-off Turn Off
+					.app-button.teal#btAllOff Turn Off
 				.app-section
-					.app-button.teal(onclick='send_cmd("mood_color_tween_start")') Start Tween
-					.app-button.red(onclick='send_cmd("mood_color_tween_stop")') Stop Tween
+					.app-button.teal#btTweenStart Start Tween
+					.app-button.red#btTweenStop Stop Tween
 					
 					//- input(type='range', max=1.0, min=0.0)
 		
@@ -67,9 +67,12 @@ html
 		App.controller('mood', function (page) {
 			setupMoodColorPicker($(page).find('#mood_color'));
 			$(page).on('appShow', function(){
-				var w = $(page).find('#bt-off').width() - 24;
+				var w = $(page).find('#btAllOff').width() - 24;
 				$('.sp-picker-container').width(w);
-			})
+			});
+			$(page).find('#btAllOff').on('click', function(){send_cmd('mood_off')});
+			$(page).find('#btTweenStart').on('click', function(){send_cmd('mood_color_tween_start')});
+			$(page).find('#btTweenStop').on('click', function(){send_cmd('mood_color_tween_stop')});
 		});
 		
 		App.controller('config', function (page) {
