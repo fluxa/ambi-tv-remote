@@ -9,7 +9,10 @@ var mood = require('../util/mood');
 exports = module.exports = {
 
 	commands : function (req, res) { // Manages commands to ambitv process
+
 		var cmd = req.params['command'];
+
+		console.log('remote got command: %s',cmd);
 
 		switch(cmd) {
 			case 'launch':
