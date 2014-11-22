@@ -5,17 +5,16 @@
 
 
 // controllers
-var remote = require('../app/controllers/remote');
+var controllers = require('../app/controllers');
 
 /**
  * Expose
  */
 
-
 module.exports = function (app) {
 
-	app.get('/', remote.ui);
-	app.post('/remote/:command', remote.command);
-	app.post('/save', remote.config_save);
-	
+	app.get('/', controllers.remote.ui);
+	app.post('/remote/:command', controllers.remote.commands);
+	app.post('/save', controllers.config.save);
+
 }

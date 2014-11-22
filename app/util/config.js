@@ -5,12 +5,13 @@
 
 var configurables = ['crop-left', 'crop-top', 'crop-right', 'crop-bottom', 'blended-frames', 'box-width', 'box-height','speed','leds-left','leds-top','leds-right','leds-bottom','led-inset-left','led-inset-top','led-inset-right','led-inset-bottom','gamma-red','gamma-green','gamma-blue'];
 var fs = require('fs');
-var my_conf_path = common.util.format('%s/my-conf.json',common.config.root); 
-var conf_path = common.util.format('%s/ambi-tv.conf',common.config.root);
+var my_conf_path = common.util.format('%s/my-conf.json',common.rootPath);
+var conf_path = common.util.format('%s/ambi-tv.conf',common.rootPath);
 var conf = require('../../ambi-tv.json');
 
 var my_conf = get_my_conf();
 exports.path = conf_path;
+
 
 // Writes ambi-tv.conf base on my_conf + defaults
 update();
@@ -73,7 +74,7 @@ function get_my_conf() {
 		}
 		return myconf;
 	}
-	
+
 }
 
 function update_my_conf(existing) {
@@ -86,11 +87,11 @@ function update_my_conf(existing) {
 				var prop_key = Object.keys(prop)[0];
 				if(prop_key === conf_key) {
 					if(existing) {
-						my_conf_defaults[conf_key] = existing[conf_key] || prop[conf_key]	
+						my_conf_defaults[conf_key] = existing[conf_key] || prop[conf_key]
 					} else {
-						my_conf_defaults[conf_key] = prop[conf_key]	
+						my_conf_defaults[conf_key] = prop[conf_key]
 					}
-					
+
 				}
 			});
 		});

@@ -1,11 +1,17 @@
 
 /*!
- * Module dependencies.
- */
- common = {
-    util: require('util'),
-    config: require('../../config/config'),
-    _: require('underscore')
- }
+* Module dependencies.
+*/
 
- module.exports = common;
+var path = require('path')
+
+common = {
+  isDebugging :  process.env.NODE_ENV === 'DEBUGGING',
+  rootPath : path.resolve(__dirname + '../../..'),
+  util: require('util'),
+  _: require('underscore')
+}
+
+module.exports = common;
+
+common.config = require('./config');

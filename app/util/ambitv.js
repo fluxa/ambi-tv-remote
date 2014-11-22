@@ -3,12 +3,12 @@
  * Module dependencies.
  */
 
-var conf = require('./conf');
+var conf = require('./config');
 var child_process = require('child_process');
 
 
 var proc;
-var bin_path = common.util.format('%s/ambi-tv/bin/ambi-tv',common.config.root);
+var bin_path = common.util.format('%s/ambi-tv/bin/ambi-tv',common.rootPath);
 
 // Launches ambi-tv process
 exports.launch = function() {
@@ -38,7 +38,7 @@ exports.launch = function() {
 
 		proc.on('message', function(message) {
 			console.log(common.util.format('ambi-tv message: %s',JSON.stringify(message)));
-			
+
 		});
 
 		proc.on('exit', function(code) {
@@ -47,7 +47,7 @@ exports.launch = function() {
 		});
 
 		console.log(common.util.format('spawned ambi-tv process with pid %s',proc.pid));
-			
+
 	}
 
 }
@@ -62,7 +62,7 @@ exports.pause = function() {
 // Toggle mode
 exports.mode = function() {
 	if(proc) {
-		proc.stdin.write(' ');	
+		proc.stdin.write(' ');
 	}
 }
 

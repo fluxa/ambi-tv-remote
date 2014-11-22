@@ -3,74 +3,57 @@
  * Module dependencies.
  */
 
-var conf = require('../util/conf');
 var ambitv = require('../util/ambitv');
 var mood = require('../util/mood');
 
-// Manages commands to ambitv process
-exports.command = function (req, res) {
+exports = module.exports = {
 
-	var cmd = req.params['command'];
-	
-	switch(cmd) {
-		case 'launch':
-		ambitv.launch();
-		break;
-		
-		case 'pause':
-		ambitv.pause();
-		break;
-		
-		case 'kill':
-		ambitv.kill();
-		break;
+	commands : function (req, res) { // Manages commands to ambitv process
+		var cmd = req.params['command'];
 
-		case 'mode':
-		ambitv.mode();
-		break;
+		switch(cmd) {
+			case 'launch':
+				ambitv.launch();
+				break;
 
-		case 'mood_off':
-		mood.off();
-		break;
+			case 'pause':
+				ambitv.pause();
+				break;
 
-		case 'mood_color':
-		var rgb = req.body.rgb;
-		if(rgb) {
-			mood.color(rgb.r, rgb.g, rgb.b);	
-		}
-		break;
-	}
+			case 'kill':
+				ambitv.kill();
+				break;
 
-	res.send({success:true});
-	
-	
-}
+			case 'mode':
+				ambitv.mode();
+				break;
 
-// UI
-exports.ui = function (req, res) {
+			case 'mood_off':
+				mood.off();
+				break;
 
-	res.render('../views/remote', {
-		my_conf: conf.get_my_conf(),
-		title: 'remote'
-	});
-	
-}
+			case 'mood_color':
+				var rgb = req.body.rgb;
+				if(rgb) {
+					mood.color(rgb.r, rgb.g, rgb.b);
+				}
+				break;
+			case 'mood_color_tween_start':
+				mood.colorTween.start([],0);
+				break;
+			case 'mood_color_tween_stop':
+				mood.colorTween.stop();
+				break;
+			}
+		res.send({success:true});
+	},
 
-exports.config_save = function(req, res) {
-	
-	var updated = req.body;
-	if(updated) {
-		conf.save(updated, function(err) {
-			res.redirect('/');
+	ui : function (req, res) {
+
+		res.render('../views/remote', {
+			my_conf: common.config.get_my_conf()
 		});
-	} else {
-		// TODO: flash error
-		res.redirect('/');
+
 	}
-}
-
-// Mood
-exports.mood_launch = function(req, res) {
 
 }
-

@@ -18,11 +18,11 @@ module.exports = function (app, config) {
 	app.set('showStackError', true)
 
 	// use express favicon
-	app.use(favicon(config.root + '/public/images/favicon.ico'));
+	app.use(favicon(common.rootPath + '/public/images/favicon.ico'));
 
 
 	// views config
-	app.set('views', config.root + '/app/views');
+	app.set('views', common.rootPath + '/app/views');
 	app.set('view engine', 'jade');
 	app.use(bodyParser.urlencoded({
 		extended: true
@@ -31,7 +31,7 @@ module.exports = function (app, config) {
 	app.locals.pretty = true;
 
 	//static should be after less-middleware
-	app.use(express.static(config.root + '/public'))
+	app.use(express.static(common.rootPath + '/public'))
 
 	// expose pkg and node env to views
 	app.use(function (req, res, next) {

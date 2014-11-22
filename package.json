@@ -21,7 +21,8 @@
     "jade": "latest",
     "underscore": "latest",
     "color": "latest",
-    "pi-spi": "latest"
+    "pi-spi": "latest",
+    "tween.js": "lastest"
   },
   "devDependencies": {
     "nodemon": "latest"

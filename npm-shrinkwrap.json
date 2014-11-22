@@ -559,6 +559,11 @@
         }
       }
     },
+    "tween.js": {
+      "version": "0.14.0",
+      "from": "tween.js@",
+      "resolved": "https://registry.npmjs.org/tween.js/-/tween.js-0.14.0.tgz"
+    },
     "underscore": {
       "version": "1.7.0",
       "from": "underscore@latest",

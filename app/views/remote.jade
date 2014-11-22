@@ -36,6 +36,9 @@ html
 					input(type='text')#mood_color
 				.app-section
 					.app-button.teal(onclick='send_cmd("mood_off")')#bt-off Turn Off
+				.app-section
+					.app-button.teal(onclick='send_cmd("mood_color_tween_start")') Start Tween
+					.app-button.red(onclick='send_cmd("mood_color_tween_stop")') Stop Tween
 					
 					//- input(type='range', max=1.0, min=0.0)
 		
