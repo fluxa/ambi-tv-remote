@@ -2,7 +2,7 @@
 Length of a tick in milliseconds. The denominator is your desired framerate.
 e.g. 1000 / 20 = 20 fps,  1000 / 60 = 60 fps
 */
-var tickLengthMs = 1000 / 5;
+var tickLengthMs = 1000 / 30;
 
 /* gameLoop related variables */
 // timestamp of each loop
@@ -23,7 +23,7 @@ var gameLoop = function () {
 
       exports.update(delta, now);
 
-      console.log('delta', delta, '(target: ' + tickLengthMs +' ms)', 'node ticks', actualTicks);
+      // console.log('delta', delta, '(target: ' + tickLengthMs +' ms)', 'node ticks', actualTicks);
       actualTicks = 0;
     }
 

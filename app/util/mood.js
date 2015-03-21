@@ -54,9 +54,9 @@ exports.colorTween = {
 		.onUpdate(function(){
 			var r = this.x;
 			var g = 255-this.x;
-			var b = 0;
+			var b = 100;
 			exports.color(r,g,b);
-			console.log(Math.round(this.x));
+			// console.log(Math.round(this.x));
 		})
 		.onComplete(function(){
 			console.log('finish');
