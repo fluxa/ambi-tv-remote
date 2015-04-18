@@ -50,6 +50,7 @@ options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
 First make sure to take a look at the init script and make changes according to your settings (APP_DIR)
 ```
 sudo cp init.d/ambi-tv-remote /etc/init.d/
+sudo chmod 755 /etc/init.d/ambi-tv-remote 
 ```
 
 ### Test if it works
